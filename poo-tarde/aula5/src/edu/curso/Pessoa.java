@@ -2,6 +2,15 @@ package edu.curso;
 public class Pessoa {
 	private String nome;
 	private int idade;
+	private boolean descansada;
+	public boolean isDescansada() { 
+		return this.descansada;
+	}
+	
+	public void setDescansada(boolean valor) { 
+		this.descansada = valor;
+	}
+	
 	public String getNome() { 
 		return this.nome;
 	}
