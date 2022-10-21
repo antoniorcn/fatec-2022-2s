@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -27,11 +28,13 @@ public class TesteLocalDate {
 			try { 
 				LocalDate dtl = LocalDate.parse(txtData, dtf);
 				dataValida = true;
-				dtl = dtl.minusDays(1);
+				dtl = dtl.minusDays(1 / 0);
 				System.out.println("Ontem foi " + dtl);
-			} catch (DateTimeParseException e) { 
+			} catch (ArithmeticException | 
+						DateTimeParseException e) { 
 				dataValida = false;
 				System.out.println("Data inválida");
+				e.printStackTrace();
 			}
 		}
 
