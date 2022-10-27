@@ -1,5 +1,8 @@
 package edu.curso;
 
+import javafx.animation.RotateTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -10,6 +13,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Formulario extends Application {
 
@@ -33,6 +37,36 @@ public class Formulario extends Application {
 		grid.add(txtNome, 1, 1);
 		grid.add(lblTelefone, 0, 2);
 		grid.add(txtTelefone, 1, 2);
+		
+		TranslateTransition animation1 = 
+				new TranslateTransition(Duration.seconds(0.3));
+		animation1.setFromX(500);
+		animation1.setToX(0);
+		animation1.setNode(txtId);
+		
+		RotateTransition animation11 = new RotateTransition(
+				Duration.seconds(0.3));
+		animation11.setNode(txtId);
+		animation11.setFromAngle(90);
+		animation11.setToAngle(0);
+		animation11.play();
+		
+		TranslateTransition animation2 = 
+				new TranslateTransition(Duration.seconds(0.3));
+		animation2.setFromX(500);
+		animation2.setToX(0);
+		animation2.setNode(txtNome);
+			
+		TranslateTransition animation3 = 
+				new TranslateTransition(Duration.seconds(0.3));
+		animation3.setFromX(500);
+		animation3.setToX(0);
+		animation3.setNode(txtTelefone);
+
+		SequentialTransition animateAll = 
+				new SequentialTransition(
+				animation1, animation2, animation3);
+		animateAll.play();
 		
 		Button btnSalvar = new Button("Salvar");
 		Button btnPesquisar = new Button("Pesquisar");
