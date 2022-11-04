@@ -18,9 +18,9 @@ public class TesteIcone extends Application {
 		FlowPane fp = new FlowPane();
 		
 		Label lblTeste = new Label("Teste de Icone");
-		File f = new File("images/dog.jpg");
-		System.out.println(f.getAbsolutePath());
-		System.out.println("Existe: " + f.exists());
+		// getClass().getClassLoader().getResource("file:/images/dog.jpg")
+		// System.out.println(f.getAbsolutePath());
+		// System.out.println("Existe: " + f.exists());
 		Image img = new Image("images/dog.jpg");
 		ImageView imgView = new ImageView(img);
 		
