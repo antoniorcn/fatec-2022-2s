@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class PetBoundary extends Application {
+	private Contador contador = Contador.getInstance();
 	private TextField txtId = new TextField();
 	private TextField txtNome = new TextField();
 	private TextField txtNascimento = new TextField();
@@ -42,6 +43,8 @@ public class PetBoundary extends Application {
 		gp.add(txtNascimento, 1, 2);
 		gp.add(btnAdicionar, 0, 3);
 		gp.add(btnPesquisar, 1, 3);
+		
+		cleanBoundary();
 		
 		btnAdicionar.setOnAction(e->{
 			Pet p = boundaryToEntity();
@@ -76,9 +79,9 @@ public class PetBoundary extends Application {
 	}
 	
 	public void cleanBoundary() { 
-		txtId.setText("");
-		txtNome.setText("");
-		txtNascimento.setText("");
+		Pet p = new Pet();
+		p.setId(contador.nextPetCounter());
+		entityToBoundary(p);
 	}
 	
 	public void entityToBoundary(Pet p) { 

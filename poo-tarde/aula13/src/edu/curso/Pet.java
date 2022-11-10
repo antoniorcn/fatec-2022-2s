@@ -3,15 +3,9 @@ package edu.curso;
 import java.time.LocalDate;
 
 public class Pet {
-	private static int COUNTER = 1;
 	private long id;
 	private String nome;
 	private LocalDate nascimento = LocalDate.now();
-	
-	public Pet() { 
-		setId(Pet.COUNTER);
-		Pet.COUNTER++;
-	}
 	
 	public long getId() {
 		return id;
