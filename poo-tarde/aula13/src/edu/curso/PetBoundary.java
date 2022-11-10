@@ -8,7 +8,10 @@ import java.util.List;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -22,11 +25,11 @@ public class PetBoundary extends Application {
 	private TextField txtNascimento = new TextField();
 	private Button btnAdicionar = new Button("Adicionar");
 	private Button btnPesquisar = new Button("Pesquisar");
-	
-	private List<Pet> lista = new ArrayList<>();
-	
+
 	private DateTimeFormatter dtf = 
 			DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	
+	private PetControl control = new PetControl();
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -48,15 +51,21 @@ public class PetBoundary extends Application {
 		
 		btnAdicionar.setOnAction(e->{
 			Pet p = boundaryToEntity();
-			lista.add(p);
+			control.adicionar(p);
 			cleanBoundary();
 		});
-		
+
 		btnPesquisar.setOnAction(e->{
-			for (Pet p : lista) { 
-				if (p.getNome().contains(txtNome.getText())) { 
-					entityToBoundary(p);
-				}
+			Pet p = control.pesquisar(txtNome.getText());
+			if (p != null ) { 
+				entityToBoundary(p);
+			} else { 
+				Alert a = new Alert(AlertType.ERROR, 
+							"Pet inexistente", 
+							ButtonType.CLOSE, ButtonType.CANCEL);
+				stage.hide();
+				a.showAndWait();
+				stage.show();
 			}
 		});
 		
@@ -85,10 +94,12 @@ public class PetBoundary extends Application {
 	}
 	
 	public void entityToBoundary(Pet p) { 
-		txtId.setText(String.valueOf(p.getId()));
-		txtNome.setText(p.getNome());
-		String txtData = dtf.format(p.getNascimento());
-		txtNascimento.setText(txtData);
+		if (p != null) {
+			txtId.setText(String.valueOf(p.getId()));
+			txtNome.setText(p.getNome());
+			String txtData = dtf.format(p.getNascimento());
+			txtNascimento.setText(txtData);
+		}
 	}
 
 	public static void main(String[] args) {
