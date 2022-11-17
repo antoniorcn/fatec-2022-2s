@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -91,15 +92,20 @@ public class PetBoundary extends Application {
 			control.pesquisar();
 		});
 		
-		Scene scn = new Scene(bp, 400, 200);
+		Scene scn = new Scene(bp, 600, 300);
 		
 		stage.setScene(scn);
 		stage.setTitle("Gestão de Pets");
 		stage.show();	
+		stage.addEventFilter(MouseEvent.MOUSE_ENTERED, e->{
+			System.out.println(e);
+			e.consume();
+		});
 	}
 	
 
 	public static void main(String[] args) {
+		System.out.println("App iniciado");
 		Application.launch(PetBoundary.class, args);
 	}
 }
