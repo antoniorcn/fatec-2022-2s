@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class TesteBanco {
-	public static final String URL = "jdbc:mariadb://localhost:3306/petshop";
+	public static final String URL = "jdbc:mariadb:"
+			+ "//localhost:3306/petshop?"
+			+ "allowPublicKeyRetrieval=true&useSSL=false";
 	public static final String USER = "root";
 	public static final String PASSWORD = "123456";
 	public static void main(String[] args) {
@@ -21,5 +23,4 @@ public class TesteBanco {
 			e.printStackTrace();
 		}
 	}
-
 }
