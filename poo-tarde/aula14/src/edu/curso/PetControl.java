@@ -1,8 +1,6 @@
 package edu.curso;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.ObjectProperty;
@@ -21,20 +19,7 @@ public class PetControl {
 	private StringProperty nome = new SimpleStringProperty("");
 	private ObjectProperty<LocalDate> nascimento = 
 			new SimpleObjectProperty<>(LocalDate.now());
-	
-	public void adicionar(Pet p) { 
-		lista.add(p);
-	}
-	
-	public Pet pesquisar(String nome) { 
-		for (Pet p : lista) { 
-			if (p.getNome().contains(nome)) { 
-				return p;
-			}
-		}
-		return null;
-	}
-	
+
 	public Pet boundaryToPet() { 
 		Pet p = new Pet();
 		p.setId(id.get());

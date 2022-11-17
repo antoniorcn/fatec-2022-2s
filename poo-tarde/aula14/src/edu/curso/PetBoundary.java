@@ -81,19 +81,7 @@ public class PetBoundary extends Application {
 		
 		tablePet.setItems(control.getLista());
 		tablePet.getColumns().addAll(col1, col2, col3);
-		
-//		btnAdicionar.setOnAction(e->{
-//			control.adicionar();
-//		});
-//		
-//		EventHandler<ActionEvent> man = new EventHandler<>(){
-//			@Override
-//			public void handle(ActionEvent event) {
-//				control.pesquisar();
-//			}
-//		};
-		
-		 
+	 
 		
 		btnAdicionar.setOnAction( e -> {
 			control.adicionar();
