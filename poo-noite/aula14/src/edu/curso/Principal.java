@@ -17,14 +17,15 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Principal extends Application {
+public class Principal extends Application implements Executor {
 
-	private TelaA telaA = new TelaA();
-	private TelaB telaB = new TelaB();
+	private TelaA telaA = new TelaA(this);
+	private TelaB telaB = new TelaB(this);
+	private BorderPane bp;
 	
 	@Override
 	public void start(Stage stage) {
-		BorderPane bp = new BorderPane();
+		bp = new BorderPane();
 		
 		Scene scn = new Scene(bp, 800, 600);
 		
@@ -33,9 +34,9 @@ public class Principal extends Application {
 		mnuBar.getMenus().add(mnuTelas);
 		
 		MenuItem mnuTelaA = new MenuItem("Tela A");
-		mnuTelaA.setOnAction(e->{bp.setCenter(telaA.render());});
+		mnuTelaA.setOnAction(e->{executar("ABRIR-TELA-A");});
 		MenuItem mnuTelaB = new MenuItem("Tela B");
-		mnuTelaB.setOnAction(e->{bp.setCenter(telaB.render());});
+		mnuTelaB.setOnAction(e->{executar("ABRIR-TELA-B");});
 		
 		mnuTelas.getItems().addAll(mnuTelaA, mnuTelaB);
 		
@@ -49,5 +50,14 @@ public class Principal extends Application {
 	
 	public static void main(String[] args) {
 		Application.launch(Principal.class, args);
+	}
+
+	@Override
+	public void executar(String cmd) {
+		if ("ABRIR-TELA-A".equals(cmd)) { 
+			bp.setCenter(telaA.render());
+		} else if ("ABRIR-TELA-B".equals(cmd)) { 
+			bp.setCenter(telaB.render());
+		}
 	}
 }

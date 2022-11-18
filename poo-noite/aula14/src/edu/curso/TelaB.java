@@ -18,14 +18,21 @@ public class TelaB {
 	private TextField txtModelo = new TextField();
 
 	private TableView<Carro> tableCarro = new TableView<>();
+	private Executor exec;
+	
+	public TelaB(Executor exec) {
+		this.exec = exec; 
+	}
 	
 	public Node render() {
 		GridPane gp = new GridPane();
 		BorderPane bp = new BorderPane();
 	
-		Button btnAdicionar = new Button("Adicionar");
+		Button btnAdicionar = new Button("Abrir Tela A");
 		Button btnPesquisar = new Button("Pesquisar");
 		Button btnApagar = new Button("Apagar");
+		
+		btnAdicionar.setOnAction(e->{exec.executar("ABRIR-TELA-A");});
 		
 		gp.add(new Label("Id"), 0, 0);
 		gp.add(txtId, 1, 0);

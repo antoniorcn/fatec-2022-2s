@@ -18,6 +18,11 @@ public class TelaA {
 	private TextField txtModelo = new TextField();
 
 	private TableView<Carro> tableCarro = new TableView<>();
+	private Executor exec;
+	
+	public TelaA(Executor exec) {
+		this.exec = exec; 
+	}
 	
 	public Node render() {
 		GridPane gp = new GridPane();
